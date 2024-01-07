@@ -9,15 +9,15 @@ Game::Game(const short &width, const short &height)
 void Game::run()
 {
     // snake
-    std::deque<Vector> snake = {{(short)(width / 2), (short)(height / 2)}};
+    Snake snake = Snake(); 
     // 苹果
-    Vector apple = apple::createApple(snake, height, width);
+    Apple apple = Apple(snake.getVector(), height, width);
     // 方向
     int direction = RIGHT;
     // 游戏结束标志
     bool isGameOver = false;
     // 绘制地图
-    map(snake, apple);
+    map(snake.getVector(), apple.getVector());
     // 游戏循环
     while (true)
     {
@@ -27,7 +27,7 @@ void Game::run()
         // 获取键盘输入W、A、S、D
         getDirection(direction);
 
-        isGameOver = Snake::move(snake, apple, direction, height, width);
+        isGameOver = snake.move(apple, direction, height, width);
 
         if (isGameOver)
         {

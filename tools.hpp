@@ -1,6 +1,6 @@
 #pragma once
 #include <Windows.h>
-#include "vector.hpp"
+#include "Vector.hpp"
 #include <iostream>
 
 void setCursor(const Vector &vec);

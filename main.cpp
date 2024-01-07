@@ -1,6 +1,5 @@
 #include <iostream>
-#include "Game.hpp"
-#include "Snake.hpp"
+#include "Game.hpp" 
 
 
 int main()

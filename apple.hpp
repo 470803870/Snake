@@ -1,8 +1,13 @@
 #pragma once
 #include <deque>
-#include "vector.hpp"
-class apple
+#include "Vector.hpp" 
+class Apple
 {
+private:
+    Vector m_apple;
+
 public:
-    static Vector createApple(const std::deque<Vector> &snake, const short &height, const short &width);
+    Apple(const std::deque<Vector> &m_snake, const short &height, const short &width);
+    const Vector getVector() const;
+    void operator=(const Apple &apple);
 };

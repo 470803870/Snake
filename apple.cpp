@@ -1,6 +1,6 @@
-#include "apple.hpp"
+#include "Apple.hpp"
 
-Vector apple::createApple(const std::deque<Vector> &snake, const short &height, const short &width)
+Apple::Apple(const std::deque<Vector> &m_snake, const short &height, const short &width)
 {
     short random, x, y;
     bool notNull;
@@ -10,7 +10,7 @@ Vector apple::createApple(const std::deque<Vector> &snake, const short &height, 
         random = rand() % (width * height);
         x = random % width;
         y = random / width;
-        for (auto it : snake)
+        for (auto it : m_snake)
         {
             if (it == Vector({x, y}))
                 notNull = true;
@@ -18,5 +18,15 @@ Vector apple::createApple(const std::deque<Vector> &snake, const short &height, 
         if (!notNull)
             break;
     }
-    return {x, y};
+    m_apple = Vector(x, y);
+}
+
+const Vector Apple::getVector() const
+{
+    return m_apple;
+}
+
+void Apple::operator=(const Apple &apple)
+{
+    m_apple = apple.getVector();
 }
