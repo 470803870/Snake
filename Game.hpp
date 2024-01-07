@@ -1,6 +1,5 @@
 #pragma once
-#include "Snake.hpp"
-#include "tools.hpp"
+#include "Snake.hpp" 
 #include <chrono>
 #include <thread>
 #include <conio.h>
@@ -11,10 +10,11 @@ class Game
 {
 private:
     short height, width;
+    Game(const short &height, const short &width);
 
 public:
-    Game(const short &height, const short &width);
+    static Game &get();
     void run();
     void map(const std::deque<Vector> &snake, const Vector &apple);
-    void getDirection(int &direction); 
+    void getDirection(int &direction);
 };

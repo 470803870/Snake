@@ -6,10 +6,16 @@ Game::Game(const short &width, const short &height)
     srand((unsigned int)time(0));
 }
 
+Game& Game::get()
+{
+    static Game m_instace(16, 16);
+    return m_instace;
+}
+
 void Game::run()
 {
     // snake
-    Snake snake = Snake(); 
+    Snake snake = Snake();
     // Æ»¹û
     Apple apple = Apple(snake.getVector(), height, width);
     // ·½Ïò

@@ -15,11 +15,11 @@ bool Snake::move(Apple &apple, const int &direction, const short &height, const 
 
     // 绘制移动后的snake、苹果
     drawNext(next, apple, height, width);
- 
+
     return isGameOver;
 }
 
-Vector Snake::getNext(const int &direction)
+const Vector Snake::getNext(const int &direction) const
 {
     Vector next = m_snake.back();
     switch (direction)
@@ -65,7 +65,7 @@ bool Snake::GameOver(const Vector &next, const short &height, const short &width
 
 void Snake::drawNext(const Vector &next, Apple &apple, const short &height, const short &width)
 {
-    //画出snake的下一格
+    // 画出snake的下一格
     setCursor(next);
     _PRINT_CIRCULAR;
     m_snake.push_back(next);
@@ -88,7 +88,7 @@ void Snake::drawNext(const Vector &next, Apple &apple, const short &height, cons
     setCursor({-1, height});
 }
 
-std::deque<Vector> Snake::getVector() const
+const std::deque<Vector> &Snake::getVector() const
 {
     return m_snake;
 }

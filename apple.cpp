@@ -21,7 +21,7 @@ Apple::Apple(const std::deque<Vector> &m_snake, const short &height, const short
     m_apple = Vector(x, y);
 }
 
-const Vector Apple::getVector() const
+Vector &Apple::getVector() const
 {
     return m_apple;
 }

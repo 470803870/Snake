@@ -4,7 +4,6 @@
 
 int main()
 {
-    Game myGame = Game(16, 16);
-    myGame.run();
+    Game::get().run(); 
     return 0;
 }
