@@ -13,3 +13,5 @@
 类重构
 ![UML1](image3.png)
 ![UML2](image4.png)
+## 1.3
+增加游戏菜单、难度、分数（类重构）![UML3](image5.png)

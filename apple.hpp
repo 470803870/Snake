@@ -7,7 +7,6 @@ private:
     Vector m_apple;
 
 public:
-    Apple(const std::deque<Vector> &m_snake, const short &height, const short &width);
-    Vector &getVector() const;
-    void operator=(const Apple &apple);
+    Apple(const std::deque<Vector> &m_snake, const Vector & map);
+    const Vector &getVector() const; 
 };

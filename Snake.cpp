@@ -1,28 +1,27 @@
 #include "Snake.hpp"
-Snake::Snake()
+
+bool Snake::move(const Vector &m_map)
 {
-    m_snake = std::deque<Vector>({{0, 0}, {1, 0}});
-}
+    // è®¡ç®—è›‡ç§»åŠ¨åŽçš„åæ ‡
+    const Vector next = getNext();
 
-bool Snake::move(Apple &apple, const int &direction, const short &height, const short &width)
-{
+    // ç§»åŠ¨åŽçš„åæ ‡æ˜¯å¦æ˜¯è‡ªèº«æˆ–å¢™å£
+    bool isGameOver = GameOver(next, m_map);
 
-    // ¼ÆËãsnakeÒÆ¶¯ºóµÄ×ø±ê
-    const Vector next = getNext(direction);
+    // ç»˜åˆ¶ç§»åŠ¨åŽçš„æ ¼å­
+    printCircular(next);
 
-    // ÒÆ¶¯ºóµÄ×ø±êÊÇ·ñÊÇ×ÔÉí»òÇ½±Ú
-    bool isGameOver = GameOver(next, height, width);
+    // å¢žåŠ åæ ‡
+    addNext(next);
 
-    // »æÖÆÒÆ¶¯ºóµÄsnake¡¢Æ»¹û
-    drawNext(next, apple, height, width);
-
+    // è¿”å›žæ˜¯å¦ç»“æŸæ¸¸æˆ
     return isGameOver;
 }
 
-const Vector Snake::getNext(const int &direction) const
+const Vector Snake::getNext() const
 {
     Vector next = m_snake.back();
-    switch (direction)
+    switch (m_direction)
     {
     case UP:
         --next.y;
@@ -42,11 +41,11 @@ const Vector Snake::getNext(const int &direction) const
     return next;
 }
 
-bool Snake::GameOver(const Vector &next, const short &height, const short &width) const
+bool Snake::GameOver(const Vector &next, const Vector &map) const
 {
     bool GameOver = false;
 
-    if (next.x >= width || next.x < 0 || next.y >= height || next.y < 0)
+    if (next.x >= map.x || next.x < 0 || next.y >= map.y || next.y < 0)
     {
         GameOver = true;
     }
@@ -63,32 +62,17 @@ bool Snake::GameOver(const Vector &next, const short &height, const short &width
     return GameOver;
 }
 
-void Snake::drawNext(const Vector &next, Apple &apple, const short &height, const short &width)
-{
-    // »­³ösnakeµÄÏÂÒ»¸ñ
-    setCursor(next);
-    _PRINT_CIRCULAR;
-    m_snake.push_back(next);
-
-    // ³Ôµ½Æ»¹û£¬ÖØÐÂ´´½¨Ò»¸öÐÂÆ»¹û
-    if (next == apple.getVector())
-    {
-        apple = Apple(m_snake, height, width);
-        setCursor(apple.getVector());
-        _PRINT_APPLE;
-    }
-    // Ã»³Ôµ½Æ»¹û£¬snakeÈ¥µôÎ²²¿
-    else
-    {
-        setCursor(m_snake.front());
-        _PRINT_CLEAR;
-        m_snake.pop_front();
-    }
-
-    setCursor({-1, height});
-}
-
-const std::deque<Vector> &Snake::getVector() const
+std::deque<Vector> &Snake::getVector()
 {
     return m_snake;
+}
+
+void Snake::addNext(const Vector &next)
+{
+    m_snake.push_back(next);
+}
+
+int &Snake::getdirection()
+{
+    return m_direction;
 }

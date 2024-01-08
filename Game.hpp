@@ -1,5 +1,7 @@
 #pragma once
-#include "Snake.hpp" 
+#include "Snake.hpp"
+#include "Apple.hpp"
+#include "Menu.hpp"
 #include <chrono>
 #include <thread>
 #include <conio.h>
@@ -9,12 +11,17 @@
 class Game
 {
 private:
-    short height, width;
-    Game(const short &height, const short &width);
+    Vector m_map; 
+    int m_score;
+    Menu *m_menu;
+    
+    Game(const Vector & map);
+    void Gamestart();
+    void map(const std::deque<Vector> &snake, const Vector &apple);
+    void getDirectionFromKeyBoard(int &direction); 
+    void isEatApple(Snake &snake, Apple &apple);
 
 public:
     static Game &get();
     void run();
-    void map(const std::deque<Vector> &snake, const Vector &apple);
-    void getDirection(int &direction);
 };

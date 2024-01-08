@@ -1,8 +1,7 @@
 #pragma once
 #include <deque>
-#include "tools.hpp" 
-#include "Apple.hpp"
 #include <iostream>
+#include "tools.hpp" 
 
 enum directions
 {
@@ -22,12 +21,14 @@ private:
     std::deque<Vector> m_snake;
     int m_direction;
 
-    const Vector getNext(const int &direction) const;
-    bool GameOver(const Vector &next, const short &height, const short &width) const;
-    void Snake::drawNext(const Vector &next, Apple &apple, const short &height, const short &width);
+    const Vector getNext() const;
+    bool GameOver(const Vector &next, const Vector &map) const;
+    void addNext(const Vector &next);
 
 public:
-    Snake();
-    bool move(Apple &apple, const int &direction, const short &height, const short &width);
-    const std::deque<Vector> &getVector() const;
+    Snake(const directions & direction, const std::deque<Vector> & snake)
+        : m_direction(direction), m_snake(snake){}
+    bool move(const Vector &map);
+    std::deque<Vector> &getVector();
+    int &getdirection();
 };
