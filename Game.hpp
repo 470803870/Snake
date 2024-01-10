@@ -17,6 +17,7 @@ private:
     
     Game(const Vector & map);
     void Gamestart();
+    void GameOver(int &onceAgain);
     void map(const std::deque<Vector> &snake, const Vector &apple);
     void getDirectionFromKeyBoard(int &direction); 
     void isEatApple(Snake &snake, Apple &apple);

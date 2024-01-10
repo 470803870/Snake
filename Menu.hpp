@@ -11,9 +11,15 @@ enum level
     IV
 };
 
+enum again
+{
+    Yes,
+    No
+};
+
 struct difficulty
 {
-public: 
+public:
     std::string m_string;
     int m_speed;
 
@@ -28,11 +34,11 @@ class Menu
 private:
     int m_level;
     std::unordered_map<int, difficulty> m_difficulty;
-    
+
     Menu();
 
 public:
-    static Menu &get(); 
+    static Menu &get();
     int selectDifficulty();
     const difficulty getDifficulty() const;
     void print();

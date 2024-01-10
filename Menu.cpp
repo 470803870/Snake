@@ -16,6 +16,8 @@ Menu &Menu::get()
 
 int Menu::selectDifficulty()
 {
+    system("cls");
+
     setColor(3);
     std::cout << "请选择游戏难度：\n";
     std::cout << "（上下键选择，回车确认）\n";
@@ -79,20 +81,19 @@ const difficulty Menu::getDifficulty() const
 
 void Menu::print()
 {
-    setCursor({29, 0});
+    setCursor({31, 0});
     std::cout << "贪吃蛇";
-    setCursor({27, 1});
+    setCursor({27, 3});
     std::cout << "难度：";
-    setCursor({32, 2});
+    setCursor({34, 4});
     std::cout << m_difficulty[m_level].m_string;
-    setCursor({32, 3});
+    setCursor({27, 6});
     std::cout << "得分：";
-    setCursor({32, 4});
-    std::cout << "0";
+    update(0);
 }
 
 void Menu::update(int m_score)
 {
-    setCursor({32, 4});
+    setCursor({34, 7});
     std::cout << m_score;
 }

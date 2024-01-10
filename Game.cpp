@@ -18,10 +18,16 @@ Game &Game::get()
 
 void Game::run()
 {
-    // 选择难度
-    m_menu->selectDifficulty();
-    // 开始游戏
-    Gamestart();
+    int onceAgain = Yes;
+    while (onceAgain == Yes)
+    {
+        // 选择难度
+        m_menu->selectDifficulty();
+        // 开始游戏
+        Gamestart();
+        // 游戏结束
+        GameOver(onceAgain);
+    }
 }
 
 void Game::Gamestart()
@@ -60,14 +66,68 @@ void Game::Gamestart()
         // 隐藏光标
         hideCursor();
 
-        // 游戏结束则跳出游戏循环，打印Game Over
+        // 游戏结束则跳出游戏循环
         if (isGameOver)
+            break;
+    }
+}
+
+void Game::GameOver(int &onceAgain)
+{
+    setColor(3);
+    setCursor({30, 15});
+    std::cout << "Game Over!\n";
+    setCursor({29, 21});
+    std::cout << "是否再来一局？\n";
+    setBackColor();
+    setCursor({28, 22});
+    std::cout << "是";
+    setColor(3);
+    setCursor({36, 22});
+    std::cout << "否";
+
+    int key = 0;
+    while (true)
+    {
+        while (_kbhit())
         {
-            setCursor({27, 26});
-            std::cout << "Game Over!" << std::endl;
+            key = _getch();
+        }
+
+        switch (key)
+        {
+        case 75:
+            if (onceAgain == No)
+                onceAgain = Yes;
+            setBackColor();
+            setCursor({28, 22});
+            std::cout << "是";
+            setColor(3);
+            setCursor({36, 22});
+            std::cout << "否";
+            break;
+
+        case 77:
+            if (onceAgain == Yes)
+                onceAgain = No;
+            setColor(3);
+            setCursor({28, 22});
+            std::cout << "是";
+            setBackColor();
+            setCursor({36, 22});
+            std::cout << "否";
+            break;
+
+        default:
             break;
         }
+        if (key == 13)
+            break;
+        else
+            key = 0;
     }
+    setColor(3);
+    setCursor({27, 26});
 }
 
 void Game::map(const std::deque<Vector> &snake, const Vector &apple)

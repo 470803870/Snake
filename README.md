@@ -14,4 +14,8 @@
 ![UML1](image3.png)
 ![UML2](image4.png)
 ## 1.3
-增加游戏菜单、难度、分数（类重构）![UML3](image5.png)
+增加游戏菜单、难度、分数（类重构）
+![UML3](image5.png)
+## 1.4
+增加游戏结束重新开始菜单
+![UML4](image6.png)
